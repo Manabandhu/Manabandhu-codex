@@ -21,7 +21,7 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 
 ### Backend (local)
 - Start infra/services: `docker compose -f infra/docker/docker-compose.yml up --build` (uses Neon + Upstash env by default; optional local Postgres/Redis with profiles `--profile local-db --profile local-cache`).
-- Services: gateway `:8080`, auth `:8081`, user `:8082`, room `:8083`, ride `:8084`, job `:8085`, chat `:8086`.
+- Services: gateway `:3080`, auth `:3081`, user `:3082`, room `:3083`, ride `:3084`, job `:3085`, chat `:3086`.
 - Each service exposes REST under `/v1/**`; room-service uses WebFlux router; chat-service exposes WebSocket `/ws`.
 
 ### Testing & Linting

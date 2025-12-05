@@ -8,5 +8,5 @@ RUN mvn -q -pl room-service -am package -DskipTests
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /workspace/target/*.jar app.jar
-EXPOSE 8083
+EXPOSE 3083
 ENTRYPOINT ["java","-jar","/app/app.jar"]

@@ -8,5 +8,5 @@ RUN mvn -q -pl job-service -am package -DskipTests
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /workspace/target/*.jar app.jar
-EXPOSE 8085
+EXPOSE 3085
 ENTRYPOINT ["java","-jar","/app/app.jar"]

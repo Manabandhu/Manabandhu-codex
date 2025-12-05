@@ -2,7 +2,7 @@ import axios from 'axios';
 import Constants from 'expo-constants';
 import { useAuthStore } from '../state/auth';
 
-const baseURL = Constants?.expoConfig?.extra?.apiBaseUrl || process.env.API_BASE_URL || 'http://localhost:8080';
+const baseURL = Constants?.expoConfig?.extra?.apiBaseUrl || process.env.API_BASE_URL || 'http://localhost:3080';
 
 export const api = axios.create({
   baseURL,

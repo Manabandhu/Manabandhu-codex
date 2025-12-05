@@ -2,6 +2,7 @@
   "expo": {
     "name": "ManaBandhu",
     "slug": "manabandhu-mobile",
+    "sdkVersion": "50.0.0",
     "scheme": "manabandhu",
     "version": "0.1.0",
     "orientation": "portrait",
@@ -36,7 +37,7 @@
     },
     "plugins": ["expo-router", "nativewind/babel"],
     "extra": {
-      "apiBaseUrl": "http://localhost:8080",
+      "apiBaseUrl": "http://localhost:3080",
       "firebaseApiKey": "replace-me",
       "firebaseAuthDomain": "your-project.firebaseapp.com",
       "eas": {

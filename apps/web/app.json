@@ -2,6 +2,7 @@
   "expo": {
     "name": "ManaBandhu Web",
     "slug": "manabandhu-web",
+    "sdkVersion": "50.0.0",
     "platforms": ["web"],
     "version": "0.1.0",
     "orientation": "portrait",
@@ -13,7 +14,7 @@
     },
     "plugins": ["expo-router", "nativewind/babel"],
     "extra": {
-      "apiBaseUrl": "http://localhost:8080"
+      "apiBaseUrl": "http://localhost:3080"
     }
   }
 }
