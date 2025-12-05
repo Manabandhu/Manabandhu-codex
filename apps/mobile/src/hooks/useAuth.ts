@@ -1,12 +1,12 @@
 import { useAuthStore } from '@manabandhu/utils/state/auth';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '@manabandhu/utils/api/client';
+import { authApi } from '@manabandhu/utils/api/auth';
 import { LoginRequest, LoginResponse } from '@manabandhu/types/auth';
 
 export const useLogin = () =>
   useMutation<LoginResponse, Error, LoginRequest>({
     mutationFn: async (payload) => {
-      const { data } = await api.post<LoginResponse>('/auth/login', payload);
+      const data = await authApi.login(payload);
       useAuthStore.getState().setSession(data.token, data.user);
       return data;
     }

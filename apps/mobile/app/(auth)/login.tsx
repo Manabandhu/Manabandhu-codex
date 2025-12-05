@@ -1,4 +1,4 @@
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -61,9 +61,6 @@ export default function LoginScreen() {
           <Button variant="secondary" label="Instagram" onPress={() => socialAuth('instagram')} />
           <Button variant="secondary" label="OTP" onPress={() => socialAuth('otp')} />
         </View>
-        <Link href="/(main)/" asChild>
-          <Button variant="ghost" label="Continue as guest" />
-        </Link>
       </Card>
     </ScrollView>
   );

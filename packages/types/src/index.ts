@@ -9,3 +9,5 @@ export * from './community';
 export * from './event';
 export * from './immigration';
 export * from './api';
+export * from './notifications';
+export * from './search';

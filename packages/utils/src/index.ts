@@ -1,4 +1,4 @@
-export * from './api/client';
+export * from './api';
 export * from './state/auth';
 export * from './state/user';
 export * from './state/rooms';

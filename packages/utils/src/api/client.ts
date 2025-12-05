@@ -4,6 +4,7 @@ import { useAuthStore } from '../state/auth';
 
 const baseURL =
   Constants?.expoConfig?.extra?.apiBaseUrl ||
+  process.env.EXPO_PUBLIC_API_BASE_URL ||
   process.env.API_BASE_URL ||
   'http://localhost:3080/api/v1';
 
