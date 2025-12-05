@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS chat_message (
-    id UUID PRIMARY KEY,
-    room_id VARCHAR(255) NOT NULL,
-    sender_id VARCHAR(255),
-    content TEXT,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);

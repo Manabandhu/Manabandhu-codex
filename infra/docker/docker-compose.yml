@@ -17,45 +17,23 @@ services:
     ports:
       - '6379:6379'
 
-  meilisearch:
-    image: getmeili/meilisearch:v1.5
-    environment:
-      MEILI_MASTER_KEY: masterKey
-    ports:
-      - '7700:7700'
-
-  kafka:
-    image: bitnami/kafka:3
-    environment:
-      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
-      ALLOW_PLAINTEXT_LISTENER: 'yes'
-      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
-      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-    depends_on:
-      - zookeeper
-    ports:
-      - '9092:9092'
-
-  zookeeper:
-    image: bitnami/zookeeper:3.9
-    environment:
-      ALLOW_ANONYMOUS_LOGIN: 'yes'
-    ports:
-      - '2181:2181'
-
-  manabandhu-service:
-    build: ../../backend/manabandhu-service
+  manabandhu-backend:
+    build: ../../backend
     env_file:
       - ../env/neon.env
       - ../env/upstash.env
     environment:
       PORT: 3080
-      MEILI_HOST: http://meilisearch:7700
-      MEILI_KEY: masterKey
+      NEON_DB_URL: ${NEON_DB_URL:-jdbc:postgresql://local-postgres:5432/manabandhu?sslmode=disable}
+      NEON_DB_USER: ${NEON_DB_USER:-postgres}
+      NEON_DB_PASS: ${NEON_DB_PASS:-postgres}
+      UPSTASH_REDIS_URL: ${UPSTASH_REDIS_URL:-redis://local-redis:6379}
+      UPSTASH_REDIS_TOKEN: ${UPSTASH_REDIS_TOKEN:-}
     ports:
       - '3080:3080'
     depends_on:
-      - meilisearch
+      - local-postgres
+      - local-redis
 
 volumes:
   postgres_data:

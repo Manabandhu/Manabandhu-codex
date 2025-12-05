@@ -6,7 +6,7 @@ import { LoginRequest, LoginResponse } from '@manabandhu/types/auth';
 export const useLogin = () =>
   useMutation<LoginResponse, Error, LoginRequest>({
     mutationFn: async (payload) => {
-      const { data } = await api.post('/v1/auth/login', payload);
+      const { data } = await api.post<LoginResponse>('/auth/login', payload);
       useAuthStore.getState().setSession(data.token, data.user);
       return data;
     }

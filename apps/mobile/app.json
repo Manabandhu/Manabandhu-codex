@@ -37,7 +37,7 @@
     },
     "plugins": ["expo-router", "nativewind/babel"],
     "extra": {
-      "apiBaseUrl": "http://localhost:3080",
+      "apiBaseUrl": "http://localhost:3080/api/v1",
       "firebaseApiKey": "replace-me",
       "firebaseAuthDomain": "your-project.firebaseapp.com",
       "eas": {
