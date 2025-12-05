@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  NEON_DB_URL: ${{ secrets.NEON_DB_URL }}
+  NEON_DB_USER: ${{ secrets.NEON_DB_USER }}
+  NEON_DB_PASS: ${{ secrets.NEON_DB_PASS }}
+  UPSTASH_REDIS_URL: ${{ secrets.UPSTASH_REDIS_URL }}
+  UPSTASH_REDIS_TOKEN: ${{ secrets.UPSTASH_REDIS_TOKEN }}
+
 jobs:
   lint-test-build:
     runs-on: ubuntu-latest

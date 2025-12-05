@@ -5,12 +5,12 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 ## Stack
 - **Frontend**: Expo Router (React Native + Web), NativeWind, Zustand, React Query, React Hook Form + Zod, shared UI in `packages/ui`, shared types in `packages/types`.
 - **Backend**: Spring Boot 3 (Java 21) microservices (API Gateway, Auth, User, Room, Ride, Job, Chat) using WebFlux, Security + JWT, JPA, Redis, Kafka hooks, Meilisearch.
-- **Infra**: Turborepo workspaces, Docker & Compose, GitHub Actions CI, PostgreSQL, Redis, Meilisearch, Kafka.
+- **Infra**: Turborepo workspaces, Docker & Compose, GitHub Actions CI, **Neon PostgreSQL** (single cluster for all services), **Upstash Redis** (single cache), Meilisearch, Kafka.
 
 ## Getting Started
 1. Install Node 20+ and Java 21+.
 2. Install deps: `npm install` (root installs all workspace deps).
-3. Copy envs: `cp .env.example .env` and fill secrets (API base, Firebase keys, JWT secret, DB URLs, Meili keys).
+3. Copy envs: `cp .env.example .env` and fill secrets (API base, Firebase keys, JWT secret, Neon DB URL/user/pass, Upstash Redis URL/token, Meili keys).
 
 ### Frontend
 - Dev mobile: `cd apps/mobile && npm start` (then `i`/`a` for iOS/Android or `w` for web).
@@ -20,7 +20,7 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
  - Example screens: login, home, room listing, job posting, ride offer, community/events, finance tools, immigration help.
 
 ### Backend (local)
-- Start infra/services: `docker compose -f infra/docker/docker-compose.yml up --build`.
+- Start infra/services: `docker compose -f infra/docker/docker-compose.yml up --build` (uses Neon + Upstash env by default; optional local Postgres/Redis with profiles `--profile local-db --profile local-cache`).
 - Services: gateway `:8080`, auth `:8081`, user `:8082`, room `:8083`, ride `:8084`, job `:8085`, chat `:8086`.
 - Each service exposes REST under `/v1/**`; room-service uses WebFlux router; chat-service exposes WebSocket `/ws`.
 
@@ -29,7 +29,9 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 - Backend build: `cd backend && mvn package -DskipTests`.
 
 ### Deployment
-- **Backend**: build Docker images per service (Dockerfiles included) and deploy to Fly.io/Render; point gateway to deployed service URLs.
+- **Database (Neon)**: create a branch/DB in Neon, enable `require_ssl`, and grab the JDBC URL (e.g., `jdbc:postgresql://.../neondb?sslmode=require`); set `NEON_DB_URL`, `NEON_DB_USER`, `NEON_DB_PASS` in CI and runtime. All microservices share this cluster via Hikari pool sizing (10).
+- **Cache (Upstash Redis)**: create an Upstash Redis database, copy the `UPSTASH_REDIS_URL` (rediss) and `UPSTASH_REDIS_TOKEN` and set them in CI/runtime. Redis is accessed via secure TLS using Lettuce.
+- **Backend**: build Docker images per service (Dockerfiles included) and deploy to Fly.io/Render; ensure env vars above plus `MEILI_HOST/MEILI_KEY` and `JWT_SECRET` are set. Gateway proxies to service containers.
 - **Web**: deploy `apps/web` to Vercel (Expo Router web output).
 - **Mobile**: EAS build for iOS/Android; OTA via `eas update`.
 

@@ -2,9 +2,13 @@ spring:
   application:
     name: job-service
   datasource:
-    url: ${JOB_DB_URL:jdbc:postgresql://localhost:5432/jobs}
-    username: ${JOB_DB_USER:jobs}
-    password: ${JOB_DB_PASS:jobs}
+    url: ${NEON_DB_URL}
+    username: ${NEON_DB_USER}
+    password: ${NEON_DB_PASS}
+    hikari:
+      maximum-pool-size: 10
+      data-source-properties:
+        sslMode: require
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,7 +16,10 @@ spring:
     enabled: true
   data:
     redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
+      url: ${UPSTASH_REDIS_URL}
+      password: ${UPSTASH_REDIS_TOKEN}
+  redis:
+    url: ${UPSTASH_REDIS_URL}
+    token: ${UPSTASH_REDIS_TOKEN}
 server:
   port: ${PORT:8085}

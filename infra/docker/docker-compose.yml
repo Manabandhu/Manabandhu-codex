@@ -1,17 +1,20 @@
 version: '3.9'
 services:
-  postgres:
+  local-postgres:
     image: postgres:15
-    restart: unless-stopped
+    profiles: [local-db]
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: manabandhu
     ports:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  redis:
+  local-redis:
     image: redis:7
+    profiles: [local-cache]
     ports:
       - '6379:6379'
 
@@ -43,6 +46,15 @@ services:
 
   api-gateway:
     build: ../../backend/api-gateway
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
+    environment:
+      PORT: 8080
+      MEILI_HOST: http://meilisearch:7700
+      MEILI_KEY: masterKey
+    ports:
+      - '8080:8080'
     depends_on:
       - auth-service
       - user-service
@@ -50,80 +62,61 @@ services:
       - ride-service
       - job-service
       - chat-service
-    environment:
-      PORT: 8080
-    ports:
-      - '8080:8080'
 
   auth-service:
     build: ../../backend/auth-service
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     environment:
-      AUTH_DB_URL: jdbc:postgresql://postgres:5432/auth
-      AUTH_DB_USER: postgres
-      AUTH_DB_PASS: postgres
       JWT_SECRET: change-me
     ports:
       - '8081:8081'
-    depends_on:
-      - postgres
 
   user-service:
     build: ../../backend/user-service
-    environment:
-      USER_DB_URL: jdbc:postgresql://postgres:5432/user
-      USER_DB_USER: postgres
-      USER_DB_PASS: postgres
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     ports:
       - '8082:8082'
-    depends_on:
-      - postgres
 
   room-service:
     build: ../../backend/room-service
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     environment:
-      ROOM_DB_URL: jdbc:postgresql://postgres:5432/rooms
-      ROOM_DB_USER: postgres
-      ROOM_DB_PASS: postgres
       MEILI_HOST: http://meilisearch:7700
       MEILI_KEY: masterKey
     ports:
       - '8083:8083'
     depends_on:
-      - postgres
       - meilisearch
 
   ride-service:
     build: ../../backend/ride-service
-    environment:
-      RIDE_DB_URL: jdbc:postgresql://postgres:5432/rides
-      RIDE_DB_USER: postgres
-      RIDE_DB_PASS: postgres
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     ports:
       - '8084:8084'
-    depends_on:
-      - postgres
 
   job-service:
     build: ../../backend/job-service
-    environment:
-      JOB_DB_URL: jdbc:postgresql://postgres:5432/jobs
-      JOB_DB_USER: postgres
-      JOB_DB_PASS: postgres
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     ports:
       - '8085:8085'
-    depends_on:
-      - postgres
 
   chat-service:
     build: ../../backend/chat-service
-    environment:
-      CHAT_DB_URL: jdbc:postgresql://postgres:5432/chat
-      CHAT_DB_USER: postgres
-      CHAT_DB_PASS: postgres
+    env_file:
+      - ../env/neon.env
+      - ../env/upstash.env
     ports:
       - '8086:8086'
-    depends_on:
-      - postgres
 
 volumes:
   postgres_data:
