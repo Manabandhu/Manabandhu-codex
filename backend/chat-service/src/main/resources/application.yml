@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: chat-service
+  datasource:
+    url: ${CHAT_DB_URL:jdbc:postgresql://localhost:5432/chat}
+    username: ${CHAT_DB_USER:chat}
+    password: ${CHAT_DB_PASS:chat}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: true
+server:
+  port: ${PORT:8086}

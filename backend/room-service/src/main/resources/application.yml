@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: room-service
+  datasource:
+    url: ${ROOM_DB_URL:jdbc:postgresql://localhost:5432/rooms}
+    username: ${ROOM_DB_USER:rooms}
+    password: ${ROOM_DB_PASS:rooms}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+meilisearch:
+  host: ${MEILI_HOST:http://localhost:7700}
+  apiKey: ${MEILI_KEY:masterKey}
+server:
+  port: ${PORT:8083}

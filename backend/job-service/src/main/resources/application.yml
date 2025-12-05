@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: job-service
+  datasource:
+    url: ${JOB_DB_URL:jdbc:postgresql://localhost:5432/jobs}
+    username: ${JOB_DB_USER:jobs}
+    password: ${JOB_DB_PASS:jobs}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+server:
+  port: ${PORT:8085}

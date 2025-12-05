@@ -1,0 +1,52 @@
+{
+  "name": "manabandhu-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.0.0",
+    "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-community/netinfo": "^11.3.1",
+    "@tanstack/react-query": "^5.28.4",
+    "@types/react": "18.2.47",
+    "axios": "1.6.7",
+    "expo": "^50.0.0",
+    "expo-apple-authentication": "^6.3.3",
+    "expo-constants": "^15.4.5",
+    "expo-dev-client": "^3.3.8",
+    "expo-location": "^16.5.5",
+    "expo-router": "^3.4.4",
+    "expo-secure-store": "^12.8.1",
+    "expo-status-bar": "^1.11.1",
+    "firebase": "^10.8.1",
+    "nativewind": "^4.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.50.0",
+    "react-native": "0.73.3",
+    "react-native-gesture-handler": "^2.14.0",
+    "react-native-maps": "1.15.7",
+    "react-native-reanimated": "^3.6.1",
+    "react-native-safe-area-context": "^4.8.2",
+    "react-native-screens": "^3.29.0",
+    "react-native-web": "0.19.10",
+    "zod": "^3.22.4",
+    "@hookform/resolvers": "^3.3.4",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@types/react-native": "0.73.0",
+    "@types/react-dom": "18.2.18",
+    "typescript": "5.3.3",
+    "tailwindcss": "^3.4.1"
+  }
+}
