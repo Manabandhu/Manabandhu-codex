@@ -1,0 +1,45 @@
+# Node/JS
+node_modules/
+.npm-cache/
+.yarn-cache/
+.pnpm-store/
+dist/
+build/
+.next/
+.expo/
+.expo-shared/
+web-build/
+*.log
+
+# Expo/React Native
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+
+# TypeScript
+*.tsbuildinfo
+
+# Java/Maven
+backend/**/target/
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+infra/env/*.env
+
+# Coverage
+coverage/
+
+# Misc
+.tmp/
