@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   local-postgres:
     image: postgres:15
@@ -44,8 +43,8 @@ services:
     ports:
       - '2181:2181'
 
-  api-gateway:
-    build: ../../backend/api-gateway
+  manabandhu-service:
+    build: ../../backend/manabandhu-service
     env_file:
       - ../env/neon.env
       - ../env/upstash.env
@@ -56,67 +55,7 @@ services:
     ports:
       - '3080:3080'
     depends_on:
-      - auth-service
-      - user-service
-      - room-service
-      - ride-service
-      - job-service
-      - chat-service
-
-  auth-service:
-    build: ../../backend/auth-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    environment:
-      JWT_SECRET: change-me
-    ports:
-      - '3081:3081'
-
-  user-service:
-    build: ../../backend/user-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    ports:
-      - '3082:3082'
-
-  room-service:
-    build: ../../backend/room-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    environment:
-      MEILI_HOST: http://meilisearch:7700
-      MEILI_KEY: masterKey
-    ports:
-      - '3083:3083'
-    depends_on:
       - meilisearch
-
-  ride-service:
-    build: ../../backend/ride-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    ports:
-      - '3084:3084'
-
-  job-service:
-    build: ../../backend/job-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    ports:
-      - '3085:3085'
-
-  chat-service:
-    build: ../../backend/chat-service
-    env_file:
-      - ../env/neon.env
-      - ../env/upstash.env
-    ports:
-      - '3086:3086'
 
 volumes:
   postgres_data:

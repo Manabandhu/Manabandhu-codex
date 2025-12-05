@@ -20,9 +20,8 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
  - Example screens: login, home, room listing, job posting, ride offer, community/events, finance tools, immigration help.
 
 ### Backend (local)
-- Start infra/services: `docker compose -f infra/docker/docker-compose.yml up --build` (uses Neon + Upstash env by default; optional local Postgres/Redis with profiles `--profile local-db --profile local-cache`).
-- Services: gateway `:3080`, auth `:3081`, user `:3082`, room `:3083`, ride `:3084`, job `:3085`, chat `:3086`.
-- Each service exposes REST under `/v1/**`; room-service uses WebFlux router; chat-service exposes WebSocket `/ws`.
+- Start stack: `docker compose -f infra/docker/docker-compose.yml up --build` (uses Neon + Upstash env by default; optional local Postgres/Redis with profiles `--profile local-db --profile local-cache`).
+- Single consolidated service runs at `:3080` (`/v1` endpoints, health at `/v1/health`).
 
 ### Testing & Linting
 - Frontend lint: `npm run lint` (turborepo fan-out).
@@ -41,13 +40,7 @@ apps/
   mobile/           # Expo app (mobile + web)
   web/              # Expo web entry
 backend/
-  api-gateway/
-  auth-service/
-  user-service/
-  room-service/
-  ride-service/
-  job-service/
-  chat-service/
+  manabandhu-service/   # consolidated backend app
 packages/
   ui/               # shared RN components
   utils/            # axios client, Zustand stores, hooks
@@ -59,8 +52,8 @@ docs/               # architecture notes
 ```
 
 ## Feature Stubs
-- **Auth**: email/password + OAuth providers via Firebase stub (`apps/mobile/src/api/firebase.ts`), JWT issuance in auth-service.
-- **Rooms**: multi-step form stub, Meilisearch client wired, WebFlux router example.
+- **Auth**: email/password + OAuth providers via Firebase stub (`apps/mobile/src/api/firebase.ts`), JWT issuance in consolidated backend.
+- **Rooms**: multi-step form stub, Meilisearch client wired (backend indexing placeholder).
 - **Rides**: ride offer form + status update endpoint.
 - **Jobs**: posting + scam report endpoint.
 - **Chat**: REST fetch + WebSocket STOMP broker placeholder.

@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: manabandhu-service
+  datasource:
+    url: ${NEON_DB_URL}
+    username: ${NEON_DB_USER}
+    password: ${NEON_DB_PASS}
+    hikari:
+      maximum-pool-size: 10
+      data-source-properties:
+        sslMode: require
+  jpa:
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: true
+  data:
+    redis:
+      url: ${UPSTASH_REDIS_URL}
+      password: ${UPSTASH_REDIS_TOKEN}
+  redis:
+    url: ${UPSTASH_REDIS_URL}
+    token: ${UPSTASH_REDIS_TOKEN}
+server:
+  port: ${PORT:3080}
