@@ -22,17 +22,40 @@ public class RedisConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         URI uri = URI.create(redisUrl);
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(uri.getHost(), uri.getPort());
+
+        String host = uri.getHost();
+        int port = uri.getPort();
+        String scheme = uri.getScheme();
+
+        // If no port provided, pick a sensible default depending on scheme
+        if (port == -1) {
+            if ("https".equalsIgnoreCase(scheme) || "rediss".equalsIgnoreCase(scheme)) {
+                port = 443;
+            } else {
+                port = 6379;
+            }
+        }
+
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(host, port);
+
         if (uri.getUserInfo() != null && !uri.getUserInfo().isBlank()) {
-            config.setUsername(uri.getUserInfo());
+            // userInfo may contain 'user:pass' — use username only here
+            String userInfo = uri.getUserInfo();
+            String username = userInfo.split(":", 2)[0];
+            config.setUsername(username);
         }
         if (redisToken != null && !redisToken.isBlank()) {
             config.setPassword(redisToken);
         }
 
-        LettuceClientConfiguration clientConfiguration = LettuceClientConfiguration.builder()
-                .useSsl()
-                .build();
+        boolean useSsl = "https".equalsIgnoreCase(scheme) || "rediss".equalsIgnoreCase(scheme) || redisUrl.startsWith("rediss:");
+
+        LettuceClientConfiguration.LettuceClientConfigurationBuilder clientBuilder = LettuceClientConfiguration.builder();
+        if (useSsl) {
+            clientBuilder.useSsl();
+        }
+
+        LettuceClientConfiguration clientConfiguration = clientBuilder.build();
 
         return new LettuceConnectionFactory(config, clientConfiguration);
     }

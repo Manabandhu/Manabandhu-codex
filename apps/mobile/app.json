@@ -2,7 +2,6 @@
   "expo": {
     "name": "ManaBandhu",
     "slug": "manabandhu-mobile",
-    "sdkVersion": "50.0.0",
     "scheme": "manabandhu",
     "version": "0.1.0",
     "orientation": "portrait",

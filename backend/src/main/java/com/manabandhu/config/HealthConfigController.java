@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("configHealthController")
-@RequestMapping("/api/v1/health/config")
-public class HealthController {
+@RestController("healthConfigController")
+@RequestMapping("/api/v1/health")
+public class HealthConfigController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<String>> health() {

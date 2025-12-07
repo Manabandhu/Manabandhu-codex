@@ -5,12 +5,7 @@ spring:
   application:
     name: manabandhu-backend
   datasource:
-    url: ${NEON_DB_URL:jdbc:postgresql://localhost:5432/manabandhu?sslmode=disable}
-    username: ${NEON_DB_USER:postgres}
-    password: ${NEON_DB_PASS:postgres}
-    hikari:
-      maximum-pool-size: 15
-  jpa:
+    url: jdbc:postgresql://ep-morning-smoke-a4sp6np2-pooler.us-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_4EDBtGZM3cmQ&sslmode=require&channelBinding=require
     hibernate:
       ddl-auto: validate
     properties:
@@ -22,8 +17,8 @@ spring:
     enabled: true
     locations: classpath:db/migrations
   redis:
-    url: ${UPSTASH_REDIS_URL:redis://localhost:6379}
-    token: ${UPSTASH_REDIS_TOKEN:}
+    url: https://smashing-cicada-44566.upstash.io
+    token: Aq4WAAIgcDJ9eV-uC8g-UE8adpt6bRicLSZC0H7ox8O6P_AEir2a-A
   jackson:
     serialization:
       write-dates-as-timestamps: false
@@ -35,7 +30,7 @@ management:
         include: health,info
 
 jwt:
-  secret: ${JWT_SECRET:change-me}
+  secret: ${JWT_SECRET:Q2hhbmdlVGhpc1NlY3JldEJ1dGlzVG9vU2hvcnQxMjM0NTY=}
 
 app:
   cors:
