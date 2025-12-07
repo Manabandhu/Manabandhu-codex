@@ -13,7 +13,7 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 3. Copy envs: `cp .env.example .env` and fill secrets (API base, Firebase keys, JWT secret, Neon DB URL/user/pass, Upstash Redis URL/token).
 
 ### Frontend
-- Dev: `cd apps/mobile && npm start` (then `i`/`a` for iOS/Android or `w` for web)
+ - Dev: `cd frontend && npm start` (then `i`/`a` for iOS/Android or `w` for web)
 - Shared UI in `packages/ui`, stores/API in `packages/utils`
 
 ### Backend (local)
@@ -33,7 +33,7 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 
 ## Monorepo Layout
 ```
-apps/mobile/        # Expo (mobile + web)
+frontend/           # Expo (mobile + web)
 backend/            # Spring Boot monolith
 packages/
   ui/               # shared components

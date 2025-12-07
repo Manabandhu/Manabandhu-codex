@@ -27,39 +27,39 @@
 ### 1. Room Finder
 - Search with filters, map view, roommate matching
 - Verified listings, split expenses
-- Files: `apps/mobile/app/(forms)/room-*`, `backend/.../room/`
+- Files: `frontend/app/(forms)/room-*`, `backend/.../room/`
 
 ### 2. Jobs & Career
 - Listings, AI resume builder, mock interviews, referrals
-- Files: `apps/mobile/app/jobs/`, `backend/.../job/`
+- Files: `frontend/app/jobs/`, `backend/.../job/`
 
 ### 3. Finance
 - Expense tracker, group wallets, currency converter
-- Files: `apps/mobile/app/(main)/finance.tsx`, `backend/.../finance/`
+- Files: `frontend/app/(main)/finance.tsx`, `backend/.../finance/`
 
 ### 4. Ride Sharing
 - Offer/request rides, cost split, route preview
-- Files: `apps/mobile/app/(forms)/ride-*`, `backend/.../ride/`
+- Files: `frontend/app/(forms)/ride-*`, `backend/.../ride/`
 
 ### 5. Marketplace
 - Buy/sell/rent, auction system
-- Files: `apps/mobile/app/marketplace/`, `backend/.../marketplace/`
+- Files: `frontend/app/marketplace/`, `backend/.../marketplace/`
 
 ### 6. Social & Cultural
 - Groups, festivals, food delivery, matrimony
-- Files: `apps/mobile/app/social/`, `backend/.../social/`
+- Files: `frontend/app/social/`, `backend/.../social/`
 
 ### 7. Health & Lifestyle
 - Doctor search, telemedicine, fitness, diet
-- Files: `apps/mobile/app/health/`, `backend/.../health/`
+- Files: `frontend/app/health/`, `backend/.../health/`
 
 ### 8. Immigration
 - Visa tracking, lawyer booking, templates
-- Files: `apps/mobile/app/(main)/immigration.tsx`
+- Files: `frontend/app/(main)/immigration.tsx`
 
 ### 9. AI Tools
 - Chatbot, recommendations, voice search, astrology
-- Files: `apps/mobile/app/ai/`, `backend/.../ai/`
+- Files: `frontend/app/ai/`, `backend/.../ai/`
 
 ## Development
 
@@ -72,7 +72,7 @@ cp .env.example .env
 
 ### Run Frontend
 ```bash
-cd apps/mobile
+cd frontend
 npm start
 # Press 'i' for iOS, 'a' for Android, 'w' for web
 ```
