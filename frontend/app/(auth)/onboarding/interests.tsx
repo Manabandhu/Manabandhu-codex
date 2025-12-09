@@ -51,7 +51,7 @@ export default function InterestsScreen() {
         
         <View className="items-center py-8">
           <Image 
-            source={require('../../assets/logo.png')} 
+            source={require('../../../assets/logo.png')} 
             className="w-[60px] h-[60px] mb-4"
           />
           <Text className="text-white text-2xl font-bold mb-2">

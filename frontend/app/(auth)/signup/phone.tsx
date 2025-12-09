@@ -43,7 +43,7 @@ export default function PhoneSignupScreen() {
         
         <View className="flex-1 justify-center items-center px-6">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-15 h-15 mb-3"
           />
           <Text className="text-white text-2xl font-bold">Verify Phone</Text>

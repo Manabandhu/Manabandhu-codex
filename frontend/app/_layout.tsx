@@ -10,16 +10,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <Stack>
-            <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
-            <Stack.Screen name="(main)/index" options={{ title: 'Home' }} />
-            <Stack.Screen name="(forms)/room-listing" options={{ title: 'Create Listing' }} />
-            <Stack.Screen name="(forms)/job-posting" options={{ title: 'Post Job' }} />
-            <Stack.Screen name="(forms)/ride-offer" options={{ title: 'Offer Ride' }} />
-            <Stack.Screen name="(main)/community" options={{ title: 'Community' }} />
-            <Stack.Screen name="(main)/finance" options={{ title: 'Finance' }} />
-            <Stack.Screen name="(main)/immigration" options={{ title: 'Immigration Help' }} />
-          </Stack>
+          <Stack screenOptions={{ headerShown: false }} />
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

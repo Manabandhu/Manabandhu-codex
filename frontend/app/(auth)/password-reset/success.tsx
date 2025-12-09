@@ -112,7 +112,7 @@ export default function PasswordSuccessScreen() {
         
         <View className="flex-1 justify-center items-center px-6 z-10">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-15 h-15 mb-4"
           />
           <Text className="text-white text-2xl font-bold">Password Reset!</Text>

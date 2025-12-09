@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { Button, FloatingTextField } from '@manabandhu/ui/components';
-import { usePasswordReset } from '../../src/hooks/useAuth';
+import { usePasswordReset } from '../../../src/hooks/useAuth';
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email address')
@@ -46,7 +46,7 @@ export default function ResetPasswordScreen() {
         
         <View className="flex-1 justify-center items-center px-6 z-10">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-16 h-16 mb-4"
           />
           <Text className="text-white text-2xl font-bold mb-2">Reset Password</Text>

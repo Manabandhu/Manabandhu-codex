@@ -25,7 +25,7 @@ export default function SignupScreen() {
         
         <View className="flex-1 justify-center items-center px-6">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-20 h-20 mb-4"
           />
           <Text className="text-white text-3xl font-bold mb-2">Join ManaBandhu</Text>

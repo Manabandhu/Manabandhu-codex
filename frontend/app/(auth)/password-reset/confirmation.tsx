@@ -52,7 +52,7 @@ export default function ResetConfirmationScreen() {
         
         <View className="flex-1 justify-center items-center px-6 z-10">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-16 h-16 mb-4"
           />
           <Text className="text-white text-2xl font-bold">Check Your Email</Text>

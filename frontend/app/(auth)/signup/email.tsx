@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { TextField } from '@manabandhu/ui/components';
-import { useSignup } from '../../src/hooks/useAuth';
+import { useSignup } from '../../../src/hooks/useAuth';
 
 const schema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
@@ -88,7 +88,7 @@ export default function EmailSignupScreen() {
         
         <View className="flex-1 justify-center items-center px-6">
           <Image 
-            source={require('../../assets/icon.png')} 
+            source={require('../../../assets/icon.png')} 
             className="w-15 h-15 mb-3"
           />
           <Text className="text-white text-2xl font-bold">Create Account</Text>
