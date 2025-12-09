@@ -12,7 +12,10 @@ public class UserAccount extends BaseEntity {
     private String email;
     private String password;
     private String name;
+    private String phone;
+    private String authProvider = "email";
     private boolean verified;
+    private boolean active = true;
 
     public String getEmail() {
         return email;
@@ -44,5 +47,29 @@ public class UserAccount extends BaseEntity {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAuthProvider() {
+        return authProvider;
+    }
+
+    public void setAuthProvider(String authProvider) {
+        this.authProvider = authProvider;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

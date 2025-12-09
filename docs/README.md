@@ -1,146 +1,120 @@
 # ManaBandhu Documentation
 
-## Quick Links
-- [Complete Features](./complete-features.md) - All 9 modules, 60+ screens
-- [API Reference](./api-complete.md) - 80+ REST endpoints
-- [Database Schema](./er-diagram.md) - 17 tables with relationships
-- [Deployment Guide](./deployment-complete.md) - Production deployment
-- [Completion Report](./COMPLETION-REPORT.md) - 100% feature completion
+Complete documentation for the ManaBandhu super-app monorepo.
 
-## Architecture Overview
+## 📚 Documentation Structure
 
-### Monolithic Design
-- **Single Backend**: Spring Boot 3 with 9 modular packages
-- **Single Frontend**: Expo (React Native + Web)
-- **Single Database**: Neon PostgreSQL
-- **Single Cache**: Upstash Redis
+### 🔐 Authentication & Onboarding
+**[auth/](./auth/)** - Complete auth implementation
+- Backend setup with Spring Boot & JWT
+- Frontend screens & hooks
+- Database schema & migrations
+- Code review fixes
 
-### Tech Stack
-- Frontend: Expo Router, NativeWind, Zustand, React Query
-- Backend: Spring Boot 3, Java 21, JPA, Flyway
-- Database: PostgreSQL (Neon)
-- Cache: Redis (Upstash)
-- Deployment: Docker, Cloud Run, Vercel, EAS
+### 🔌 API Reference
+**[api/](./api/)** - REST API documentation
+- 80+ endpoints across 9 modules
+- Database schema (17 tables)
+- Request/response examples
 
-## Module Structure
+### 📋 Project Documentation
+- **[FEATURES.md](./FEATURES.md)** - Complete feature list (60+ screens)
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Deployment guide (Cloud Run, Vercel, EAS)
+- **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** - Project completion report
+- **[IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md)** - Latest implementation summary
+- **[ORGANIZATION_SUMMARY.md](./ORGANIZATION_SUMMARY.md)** - Complete file organization summary
 
-### 1. Room Finder
-- Search with filters, map view, roommate matching
-- Verified listings, split expenses
-- Files: `frontend/app/(forms)/room-*`, `backend/.../room/`
+## 🚀 Quick Links
 
-### 2. Jobs & Career
-- Listings, AI resume builder, mock interviews, referrals
-- Files: `frontend/app/jobs/`, `backend/.../job/`
+### Getting Started
+1. [Project README](../README.md) - Main project overview
+2. [Auth Setup](./auth/README.md) - Authentication setup
+3. [API Endpoints](./api/endpoints.md) - API reference
 
-### 3. Finance
-- Expense tracker, group wallets, currency converter
-- Files: `frontend/app/(main)/finance.tsx`, `backend/.../finance/`
+### Development
+- [Backend Implementation](./auth/backend-implementation.md)
+- [Frontend Fixes](./auth/frontend-fixes.md)
+- [Database Schema](./api/database-schema.md)
 
-### 4. Ride Sharing
-- Offer/request rides, cost split, route preview
-- Files: `frontend/app/(forms)/ride-*`, `backend/.../ride/`
+### Deployment
+- [Deployment Guide](./DEPLOYMENT.md)
+- [Features List](./FEATURES.md)
 
-### 5. Marketplace
-- Buy/sell/rent, auction system
-- Files: `frontend/app/marketplace/`, `backend/.../marketplace/`
+## 🏗️ Architecture
 
-### 6. Social & Cultural
-- Groups, festivals, food delivery, matrimony
-- Files: `frontend/app/social/`, `backend/.../social/`
-
-### 7. Health & Lifestyle
-- Doctor search, telemedicine, fitness, diet
-- Files: `frontend/app/health/`, `backend/.../health/`
-
-### 8. Immigration
-- Visa tracking, lawyer booking, templates
-- Files: `frontend/app/(main)/immigration.tsx`
-
-### 9. AI Tools
-- Chatbot, recommendations, voice search, astrology
-- Files: `frontend/app/ai/`, `backend/.../ai/`
-
-## Development
-
-### Setup
-```bash
-npm install
-cp .env.example .env
-# Fill in: API_BASE_URL, Firebase keys, DB credentials
+```
+ManaBandhu/
+├── frontend/          # Expo (React Native + Web)
+├── backend/           # Spring Boot monolith
+├── packages/
+│   ├── ui/           # Shared components
+│   ├── utils/        # API client, stores
+│   └── types/        # Shared types
+├── infra/            # Docker, CI/CD
+└── docs/             # Documentation (you are here)
 ```
 
-### Run Frontend
+## 📊 Tech Stack
+
+### Frontend
+- Expo Router (React Native + Web)
+- NativeWind (Tailwind CSS)
+- Zustand (State management)
+- React Query (Data fetching)
+- TypeScript
+
+### Backend
+- Spring Boot 3 (Java 21)
+- PostgreSQL (Neon)
+- Redis (Upstash)
+- JWT Authentication
+- Flyway Migrations
+
+### Infrastructure
+- Turborepo (Monorepo)
+- Docker Compose
+- GitHub Actions
+- Cloud Run / Vercel / EAS
+
+## 🎯 Features
+
+### 9 Super-App Modules
+1. Room Finder
+2. Jobs & Career
+3. Finance Tools
+4. Ride Sharing
+5. Marketplace
+6. Social & Cultural
+7. Health & Lifestyle
+8. Immigration
+9. AI Tools
+
+See [FEATURES.md](./FEATURES.md) for complete list.
+
+## 🧪 Testing
+
+### Backend
+```bash
+cd backend
+mvn test
+```
+
+### Frontend
 ```bash
 cd frontend
-npm start
-# Press 'i' for iOS, 'a' for Android, 'w' for web
+npm test
 ```
 
-### Run Backend
-```bash
-docker compose -f infra/docker/docker-compose.yml up
-# Backend at http://localhost:3080
-```
+## 📝 Contributing
 
-## Design System
+1. Read the relevant documentation
+2. Follow the existing code structure
+3. Update documentation for new features
+4. Test thoroughly before committing
 
-### Colors
-- Primary: #0EA5E9 → #0369A1 (gradient blues)
-- Accent: #F97316 (orange)
+## 📞 Support
 
-### Typography
-- Display: Poppins
-- Body: Inter
-
-### Spacing
-- 8-point grid (8px, 16px, 24px, 32px...)
-
-### Components
-- Button, Card, TextField, Badge, IconButton
-- Location: `packages/ui/src/components/`
-
-## API Structure
-
-All endpoints under `/api/v1`:
-- `/auth` - Authentication
-- `/rooms` - Room listings
-- `/jobs` - Job postings
-- `/rides` - Ride sharing
-- `/marketplace` - Buy/sell/rent
-- `/health` - Healthcare
-- `/finance` - Financial tools
-- `/social` - Community
-- `/ai` - AI features
-
-See [api-complete.md](./api-complete.md) for full reference.
-
-## Database
-
-17 tables across 7 migrations:
-- V1: Base (users, profiles, chat, notifications)
-- V2: Rooms
-- V3: Rides
-- V4: Jobs
-- V5: Marketplace & Auctions
-- V6: Health
-- V7: Finance & Social
-
-See [er-diagram.md](./er-diagram.md) for relationships.
-
-## Deployment
-
-### Quick Deploy
-1. Set up Neon DB + Upstash Redis
-2. Build backend: `docker build -t manabandhu backend/`
-3. Deploy to Cloud Run
-4. Deploy mobile: `eas build --platform all`
-5. Deploy web: Vercel auto-deploys from Expo
-
-See [deployment-complete.md](./deployment-complete.md) for detailed steps.
-
-## Project Status
-
-✅ **100% Complete** - All 9 modules, 60+ screens, full API coverage
-
-See [COMPLETION-REPORT.md](./COMPLETION-REPORT.md) for details.
+For questions or issues, refer to:
+- [Auth Documentation](./auth/README.md)
+- [API Reference](./api/README.md)
+- [Deployment Guide](./DEPLOYMENT.md)

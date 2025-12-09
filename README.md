@@ -25,11 +25,11 @@ Cross-platform super-app boilerplate for South Asian immigrants. Ships Expo (mob
 - Backend build: `cd backend && mvn package -DskipTests`.
 
 ### Deployment
-- **Database**: Neon PostgreSQL with SSL - see `docs/deployment-complete.md`
+- **Database**: Neon PostgreSQL with SSL
 - **Cache**: Upstash Redis
 - **Backend**: Docker to Cloud Run/Render/Fly
 - **Mobile/Web**: EAS build + Vercel
-- Full guide: `docs/deployment-complete.md`
+- Full guide: `docs/DEPLOYMENT.md`
 
 ## Monorepo Layout
 ```
@@ -67,13 +67,24 @@ docs/               # documentation
 - Micro animations
 
 ### 📱 60+ Screens
-See `docs/complete-features.md` for full screen list
+See `docs/FEATURES.md` for full screen list
 
 ### 🗄️ Complete Database Schema
-17 tables with full relationships - see `docs/er-diagram.md`
+17 tables with full relationships - see `docs/api/database-schema.md`
 
 ### 🚀 REST APIs
-80+ endpoints across all modules - see `docs/api-complete.md`
+80+ endpoints across all modules - see `docs/api/endpoints.md`
+
+## Documentation
+
+📚 **[Complete Documentation](./docs/README.md)** - Start here for all guides
+
+### Quick Links
+- **[Auth Setup](./docs/auth/README.md)** - Authentication & onboarding implementation
+- **[API Reference](./docs/api/endpoints.md)** - All REST endpoints
+- **[Database Schema](./docs/api/database-schema.md)** - Complete ER diagram
+- **[Deployment Guide](./docs/DEPLOYMENT.md)** - Production deployment
+- **[Features List](./docs/FEATURES.md)** - All 60+ screens
 
 ## Next Steps
 - Configure OAuth providers (Firebase)

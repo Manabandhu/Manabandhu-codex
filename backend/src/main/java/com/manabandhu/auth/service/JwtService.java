@@ -29,7 +29,17 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + 3_600_000))
+                .setExpiration(new Date(now + 86_400_000)) // 24 hours
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateRefresh(String subject) {
+        long now = System.currentTimeMillis();
+        return Jwts.builder()
+                .setSubject(subject)
+                .setIssuedAt(new Date(now))
+                .setExpiration(new Date(now + 604_800_000)) // 7 days
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }

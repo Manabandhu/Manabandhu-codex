@@ -25,10 +25,35 @@ api.interceptors.request.use((config) => {
 });
 
 // Unwrap the ApiResponse<T> envelope returned by the monolith backend.
-api.interceptors.response.use((response) => {
-  const payload = response.data;
-  if (payload && typeof payload === 'object' && 'data' in payload && 'success' in payload) {
-    return { ...response, data: payload.data };
+api.interceptors.response.use(
+  (response) => {
+    const payload = response.data;
+    if (payload && typeof payload === 'object' && 'data' in payload && 'success' in payload) {
+      return { ...response, data: payload.data };
+    }
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    
+    // Handle 401 and attempt token refresh
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = useAuthStore.getState().refreshToken;
+      
+      if (refreshToken) {
+        try {
+          const { data } = await axios.post(`${baseURL}/auth/refresh`, { refreshToken });
+          useAuthStore.getState().setSession(data.token, data.user, data.refreshToken);
+          originalRequest.headers.Authorization = `Bearer ${data.token}`;
+          return api(originalRequest);
+        } catch (refreshError) {
+          useAuthStore.getState().clear();
+          return Promise.reject(refreshError);
+        }
+      }
+    }
+    
+    return Promise.reject(error);
   }
-  return response;
-});
+);

@@ -18,6 +18,13 @@ public class UserProfile extends BaseEntity {
     private boolean verified;
     @Column(name = "avatar_url")
     private String avatarUrl;
+    private String country;
+    private String city;
+    private String purposes;
+    private String bio;
+    private java.time.LocalDate dateOfBirth;
+    private String gender;
+    private boolean onboardingCompleted = false;
 
     public String getUserAccountId() {
         return userAccountId;
@@ -57,5 +64,61 @@ public class UserProfile extends BaseEntity {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPurposes() {
+        return purposes;
+    }
+
+    public void setPurposes(String purposes) {
+        this.purposes = purposes;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public java.time.LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(java.time.LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public boolean isOnboardingCompleted() {
+        return onboardingCompleted;
+    }
+
+    public void setOnboardingCompleted(boolean onboardingCompleted) {
+        this.onboardingCompleted = onboardingCompleted;
     }
 }

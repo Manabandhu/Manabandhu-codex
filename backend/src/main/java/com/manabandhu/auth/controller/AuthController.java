@@ -30,6 +30,24 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(authService.authenticate(request)));
     }
 
+    @PostMapping("/signup")
+    public ResponseEntity<ApiResponse<AuthResponse>> signup(@Valid @RequestBody com.manabandhu.auth.dto.SignupRequest request) {
+        return ResponseEntity.ok(ApiResponse.success(authService.signup(request)));
+    }
+
+    @PostMapping("/onboarding")
+    public ResponseEntity<ApiResponse<Void>> onboarding(Authentication authentication, @Valid @RequestBody com.manabandhu.auth.dto.OnboardingRequest request) {
+        String userId = authentication != null ? authentication.getName() : null;
+        authService.completeOnboarding(userId, request);
+        return ResponseEntity.ok(ApiResponse.success(null));
+    }
+
+    @PostMapping("/password-reset/request")
+    public ResponseEntity<ApiResponse<Void>> requestPasswordReset(@Valid @RequestBody com.manabandhu.auth.dto.PasswordResetRequest request) {
+        authService.requestPasswordReset(request.email());
+        return ResponseEntity.ok(ApiResponse.success(null));
+    }
+
     @PostMapping("/provider/{provider}")
     public ResponseEntity<ApiResponse<AuthResponse>> oauth(@PathVariable String provider, @Valid @RequestBody AuthRequest request) {
         return ResponseEntity.ok(ApiResponse.success(authService.oauth(provider, request)));
