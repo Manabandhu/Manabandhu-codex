@@ -1,9 +1,11 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "types": [
-      "nativewind/types"
-    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["nativewind/types"],
     "jsx": "react-native"
   },
   "include": [

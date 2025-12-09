@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
-import { Card, Button, TextField } from '@manabandhu/ui/components';
+import { Card, Button, TextField } from '@/components/ui';
 
 export default function JobSearchScreen() {
   return (

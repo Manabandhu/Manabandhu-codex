@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card } from '@manabandhu/ui/components';
-import { useAIStore } from '@manabandhu/utils/state/ai';
+import { Card } from '@/components/ui';
+import { useAIStore } from '@/utils/state/ai';
 
 export default function RecommendationsScreen() {
   const recommendations = useAIStore((s) => s.recommendations);

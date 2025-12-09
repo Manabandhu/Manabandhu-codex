@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Button, Card } from '@manabandhu/ui/components';
+import { Button, Card } from '@/components/ui';
 
 export default function MockInterviewScreen() {
   return (

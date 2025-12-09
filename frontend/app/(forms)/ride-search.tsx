@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Button, TextField, Card } from '@manabandhu/ui/components';
+import { Button, TextField, Card } from '@/components/ui';
 
 export default function RideSearchScreen() {
   return (

@@ -1,6 +1,6 @@
 import { ScrollView, Text, View } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useImmigrationStore } from '@manabandhu/utils/state/immigration';
+import { Card, Button } from '@/components/ui';
+import { useImmigrationStore } from '@/utils/state/immigration';
 
 export default function ImmigrationScreen() {
   const resources = useImmigrationStore((s) => s.resources);

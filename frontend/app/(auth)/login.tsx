@@ -1,179 +1,90 @@
-import { useRouter } from 'expo-router';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useState } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
-import { Button, TextField } from '@manabandhu/ui/components';
-import { useLogin } from '../../src/hooks/useAuth';
-import { useAuthStore } from '@manabandhu/utils/state/auth';
+import { useRouter } from 'expo-router';
+import { useLogin } from '@/hooks/useAuth';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react-native';
 
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6)
-});
-
-export default function LoginScreen() {
-  const router = useRouter();
-  const setPending = useAuthStore((s) => s.setPendingProvider);
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({ resolver: zodResolver(schema) });
+  const router = useRouter();
   const login = useLogin();
 
-  const onSubmit = handleSubmit(async (values) => {
-    try {
-      const response = await login.mutateAsync(values);
-      if (rememberMe) {
-        // TODO: Persist credentials securely
-      }
-      router.replace('/(main)/');
-    } catch (error: any) {
-      console.error('Login error:', error);
-      const message = error?.response?.status === 401 
-        ? 'Invalid email or password'
-        : 'Network error. Please try again.';
-      Alert.alert('Login Failed', message);
-    }
-  });
-
-  const socialAuth = (provider: string) => {
-    setPending(provider);
-    // In production integrate Firebase Auth for provider-specific flow.
+  const handleLogin = () => {
+    login.mutate({ email, password }, {
+      onSuccess: () => router.replace('/(main)'),
+    });
   };
 
   return (
-    <View className="flex-1 bg-gray-50">
-      {/* Hero Section */}
-      <LinearGradient
-        colors={['#6366f1', '#4f46e5', '#4338ca']}
-        style={{ height: 280 }}
-        className="relative"
-      >
-        <View style={{ position: 'absolute', top: -50, right: -50, width: 100, height: 100, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 50 }} />
-        <View style={{ position: 'absolute', bottom: -30, left: -30, width: 60, height: 60, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 30 }} />
-        
-        <View className="flex-1 justify-center items-center px-6">
-          <Image 
-            source={require('../../assets/icon.png')} 
-            className="w-20 h-20 mb-4"
-          />
-          <Text className="text-white text-3xl font-bold mb-2">Welcome back</Text>
-          <Text className="text-white/80 text-base text-center">
-            Sign in to your ManaBandhu account
-          </Text>
-        </View>
-      </LinearGradient>
+    <View className="flex-1 bg-gradient-to-b from-purple-100 to-white">
+      <View className="flex-1 justify-center px-6">
+        <Image source={require('@/assets/logo.png')} className="w-24 h-24 self-center mb-4" />
+        <Text className="text-3xl font-bold text-center mb-2">Welcome back</Text>
+        <Text className="text-gray-600 text-center mb-8">Sign in to your ManaBandhu account</Text>
 
-      {/* Form Section */}
-      <ScrollView className="flex-1" style={{ marginTop: -24 }} contentContainerStyle={{ paddingBottom: 40 }}>
-        <View className="bg-gray-50 rounded-t-3xl px-6 pt-8">
-          <View>
-            <TextField
-              control={control}
-              name="email"
-              label="Email"
+        <View className="mb-4">
+          <Text className="text-gray-700 mb-2">Email</Text>
+          <View className="flex-row items-center bg-white rounded-2xl px-4 py-3 border border-gray-200">
+            <Mail size={20} color="#9CA3AF" />
+            <TextInput
               placeholder="Enter your email"
-              error={errors.email?.message}
-              leftIcon={<Ionicons name="mail-outline" size={20} color="#6b7280" />}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              className="flex-1 ml-3"
             />
-            
-            <TextField
-              control={control}
-              name="password"
-              label="Password"
-              secureTextEntry={!showPassword}
-              placeholder="Enter your password"
-              error={errors.password?.message}
-              leftIcon={<Ionicons name="lock-closed-outline" size={20} color="#6b7280" />}
-              rightIcon={
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                  <Ionicons name={showPassword ? "eye-off-outline" : "eye-outline"} size={20} color="#6b7280" />
-                </TouchableOpacity>
-              }
-            />
-
-            <View className="flex-row justify-between items-center mb-6">
-              <TouchableOpacity 
-                className="flex-row items-center" 
-                onPress={() => setRememberMe(!rememberMe)}
-                accessibilityRole="checkbox"
-                accessibilityState={{ checked: rememberMe }}
-                accessibilityLabel="Remember me"
-              >
-                <View style={{ width: 20, height: 20, borderWidth: 2, borderRadius: 4, marginRight: 12, borderColor: rememberMe ? '#4f46e5' : '#9ca3af', backgroundColor: rememberMe ? '#4f46e5' : 'transparent', justifyContent: 'center', alignItems: 'center' }}>
-                  {rememberMe && <Ionicons name="checkmark" size={14} color="white" />}
-                </View>
-                <Text className="text-gray-700 text-sm">Remember me</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => router.push('/(auth)/password-reset/')}>
-                <Text className="text-indigo-600 text-sm font-semibold">Forgot password?</Text>
-              </TouchableOpacity>
-            </View>
-
-            <Button 
-              label={login.isPending ? 'Signing in...' : 'Sign in'} 
-              onPress={onSubmit}
-              className="bg-indigo-600 py-4 rounded-2xl mb-6"
-            />
-
-            <View className="flex-row items-center mb-6">
-              <View style={{ flex: 1, height: 1, backgroundColor: '#e5e7eb' }} />
-              <Text className="px-4 text-gray-500 text-sm">Or continue with</Text>
-              <View style={{ flex: 1, height: 1, backgroundColor: '#e5e7eb' }} />
-            </View>
-
-            <View>
-              <TouchableOpacity 
-                onPress={() => socialAuth('google')}
-                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl bg-white mb-3"
-              >
-                <Ionicons name="logo-google" size={20} color="#4285f4" />
-                <Text className="ml-3 text-gray-900 font-medium">Continue with Google</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => socialAuth('facebook')}
-                className="flex-row items-center justify-center py-3 px-4 rounded-2xl mb-3"
-                style={{ backgroundColor: '#1877f2' }}
-              >
-                <Ionicons name="logo-facebook" size={20} color="white" />
-                <Text className="ml-3 text-white font-medium">Continue with Facebook</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => socialAuth('apple')}
-                className="flex-row items-center justify-center py-3 px-4 rounded-2xl bg-black mb-3"
-              >
-                <Ionicons name="logo-apple" size={20} color="white" />
-                <Text className="ml-3 text-white font-medium">Continue with Apple</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => socialAuth('phone')}
-                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl mb-3"
-                style={{ backgroundColor: '#f9fafb' }}
-              >
-                <Ionicons name="call-outline" size={20} color="#374151" />
-                <Text className="ml-3 text-gray-900 font-medium">Continue with Phone Number</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View className="flex-row justify-center items-center mt-8">
-              <Text className="text-gray-600 text-sm">Don't have an account? </Text>
-              <TouchableOpacity onPress={() => router.push('/(auth)/signup/')}>
-                <Text className="text-indigo-600 font-semibold text-sm">Sign up</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
-      </ScrollView>
+
+        <View className="mb-4">
+          <Text className="text-gray-700 mb-2">Password</Text>
+          <View className="flex-row items-center bg-white rounded-2xl px-4 py-3 border border-gray-200">
+            <Lock size={20} color="#9CA3AF" />
+            <TextInput
+              placeholder="Enter your password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+              className="flex-1 ml-3"
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              {showPassword ? <EyeOff size={20} color="#9CA3AF" /> : <Eye size={20} color="#9CA3AF" />}
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View className="flex-row justify-between items-center mb-6">
+          <TouchableOpacity onPress={() => setRememberMe(!rememberMe)} className="flex-row items-center">
+            <View className={`w-5 h-5 rounded border ${rememberMe ? 'bg-blue-600 border-blue-600' : 'border-gray-300'}`} />
+            <Text className="ml-2 text-gray-700">Remember me</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push('/(auth)/forgot-password')}>
+            <Text className="text-blue-600 font-semibold">Forgot password?</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity onPress={handleLogin} className="bg-blue-600 rounded-full py-4 mb-6">
+          <Text className="text-white text-center font-bold text-lg">Sign in</Text>
+        </TouchableOpacity>
+
+        <Text className="text-center text-gray-500 mb-4">Or continue with</Text>
+
+        <TouchableOpacity className="bg-white rounded-full py-4 mb-3 flex-row items-center justify-center border border-gray-200">
+          <Text className="font-semibold ml-2">Continue with Google</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity className="bg-blue-600 rounded-full py-4 mb-3 flex-row items-center justify-center">
+          <Text className="text-white font-semibold ml-2">Continue with Facebook</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity className="bg-black rounded-full py-4 flex-row items-center justify-center">
+          <Text className="text-white font-semibold ml-2">Continue with Apple</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

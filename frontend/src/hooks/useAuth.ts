@@ -1,7 +1,7 @@
-import { useAuthStore } from '@manabandhu/utils/state/auth';
+import { useAuthStore } from '@/utils/state/auth';
 import { useMutation } from '@tanstack/react-query';
-import { authApi } from '@manabandhu/utils/api/auth';
-import { LoginRequest, LoginResponse, SignupRequest, OnboardingRequest } from '@manabandhu/types/auth';
+import { authApi } from '@/utils/api/auth';
+import { LoginRequest, LoginResponse, SignupRequest, OnboardingRequest } from '@/types/auth';
 
 export const useLogin = () =>
   useMutation<LoginResponse, Error, LoginRequest>({
@@ -24,7 +24,7 @@ export const useSignup = () =>
   });
 
 export const useOnboarding = () =>
-  useMutation<void, Error, OnboardingRequest>({
+  useMutation<void, Error, Partial<OnboardingRequest>>({
     mutationFn: async (payload) => {
       await authApi.completeOnboarding(payload);
     }

@@ -3,7 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '../src/api/queryClient';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-// import '../global.css';
+import '../global.css';
 
 export default function RootLayout() {
   return (

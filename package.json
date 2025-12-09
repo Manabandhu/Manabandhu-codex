@@ -2,20 +2,11 @@
   "name": "manabandhu",
   "private": true,
   "version": "0.1.0",
-  "packageManager": "npm@10.5.0",
-  "workspaces": ["frontend", "apps/*", "packages/*"],
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "lint": "turbo lint",
-    "test": "turbo test",
-    "format": "prettier --write ."
-  },
-  "devDependencies": {
-    "@types/node": "20.11.25",
-    "eslint": "8.57.0",
-    "prettier": "3.2.5",
-    "turbo": "1.12.5",
-    "typescript": "5.3.3"
+    "dev": "cd frontend && npm start",
+    "android": "cd frontend && npm run android",
+    "ios": "cd frontend && npm run ios",
+    "web": "cd frontend && npm run web",
+    "lint": "cd frontend && npm run lint"
   }
 }

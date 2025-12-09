@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { Link } from 'expo-router';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useMarketplaceStore } from '@manabandhu/utils/state/marketplace';
+import { Card, Button } from '@/components/ui';
+import { useMarketplaceStore } from '@/utils/state/marketplace';
 
 export default function MarketplaceScreen() {
   const items = useMarketplaceStore((s) => s.items);

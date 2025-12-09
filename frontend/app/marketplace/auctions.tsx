@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useMarketplaceStore } from '@manabandhu/utils/state/marketplace';
+import { Card, Button } from '@/components/ui';
+import { useMarketplaceStore } from '@/utils/state/marketplace';
 
 export default function AuctionsScreen() {
   const auctions = useMarketplaceStore((s) => s.auctions);

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card } from '@manabandhu/ui/components';
+import { Card } from '@/components/ui';
 
 export default function AstrologyScreen() {
   return (

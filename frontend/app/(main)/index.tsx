@@ -1,12 +1,12 @@
 import { Link } from 'expo-router';
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useAuthStore } from '@manabandhu/utils/state/auth';
-import { useRoomsStore } from '@manabandhu/utils/state/rooms';
-import { useRidesStore } from '@manabandhu/utils/state/rides';
-import { useFinanceStore } from '@manabandhu/utils/state/finance';
-import { useCommunityStore } from '@manabandhu/utils/state/community';
-import { useImmigrationStore } from '@manabandhu/utils/state/immigration';
+import { Card, Button } from '@/components/ui';
+import { useAuthStore } from '@/utils/state/auth';
+import { useRoomsStore } from '@/utils/state/rooms';
+import { useRidesStore } from '@/utils/state/rides';
+import { useFinanceStore } from '@/utils/state/finance';
+import { useCommunityStore } from '@/utils/state/community';
+import { useImmigrationStore } from '@/utils/state/immigration';
 
 export default function HomeScreen() {
   const user = useAuthStore((s) => s.user);

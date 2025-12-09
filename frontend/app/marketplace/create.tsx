@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { TextField, Button } from '@manabandhu/ui/components';
+import { TextField, Button } from '@/components/ui';
 import { useState } from 'react';
 
 export default function CreateListingScreen() {

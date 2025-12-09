@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Button, TextField } from '@manabandhu/ui/components';
+import { Button, TextField } from '@/components/ui';
 
 export default function ResumeBuilderScreen() {
   return (

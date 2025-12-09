@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Button } from '@manabandhu/ui/components';
+import { Button } from '@/components/ui';
 
 export default function VoiceSearchScreen() {
   return (

@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'react-native';
-import { Button, TextField, Card } from '@manabandhu/ui/components';
-import { useRidesStore } from '@manabandhu/utils/state/rides';
+import { Button, TextField, Card } from '@/components/ui';
+import { useRidesStore } from '@/utils/state/rides';
 
 const schema = z.object({
   route: z.string().min(3),

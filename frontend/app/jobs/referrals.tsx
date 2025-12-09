@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
+import { Card, Button } from '@/components/ui';
 
 export default function ReferralsScreen() {
   const referrals = [

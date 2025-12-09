@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'react-native';
-import { Button, TextField, Card } from '@manabandhu/ui/components';
-import { useJobsStore } from '@manabandhu/utils/state/jobs';
+import { Button, TextField, Card } from '@/components/ui';
+import { useJobsStore } from '@/utils/state/jobs';
 
 const schema = z.object({
   title: z.string().min(3),

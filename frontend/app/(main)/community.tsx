@@ -1,6 +1,6 @@
 import { ScrollView, Text, View } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useCommunityStore } from '@manabandhu/utils/state/community';
+import { Card, Button } from '@/components/ui';
+import { useCommunityStore } from '@/utils/state/community';
 
 export default function CommunityScreen() {
   const rooms = useCommunityStore((s) => s.rooms);

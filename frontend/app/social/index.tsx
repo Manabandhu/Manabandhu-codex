@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
-import { Card, Button } from '@manabandhu/ui/components';
+import { Card, Button } from '@/components/ui';
 
 export default function SocialScreen() {
   return (

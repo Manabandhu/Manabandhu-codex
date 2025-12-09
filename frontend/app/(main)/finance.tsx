@@ -1,6 +1,6 @@
 import { ScrollView, Text, View } from 'react-native';
-import { Card, Button, TextField } from '@manabandhu/ui/components';
-import { useFinanceStore } from '@manabandhu/utils/state/finance';
+import { Card, Button, TextField } from '@/components/ui';
+import { useFinanceStore } from '@/utils/state/finance';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';

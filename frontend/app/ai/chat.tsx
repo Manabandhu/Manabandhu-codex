@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TextInput } from 'react-native';
-import { Button } from '@manabandhu/ui/components';
-import { useAIStore } from '@manabandhu/utils/state/ai';
+import { Button } from '@/components/ui';
+import { useAIStore } from '@/utils/state/ai';
 import { useState } from 'react';
 
 export default function AIChatScreen() {

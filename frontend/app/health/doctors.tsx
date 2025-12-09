@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Button } from '@manabandhu/ui/components';
-import { useHealthStore } from '@manabandhu/utils/state/health';
+import { Card, Button } from '@/components/ui';
+import { useHealthStore } from '@/utils/state/health';
 
 export default function DoctorsScreen() {
   const doctors = useHealthStore((s) => s.doctors);

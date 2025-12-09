@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Button, TextField } from '@manabandhu/ui/components';
+import { Card, Button, TextField } from '@/components/ui';
 import { useState } from 'react';
 
 export default function RoomSearchScreen() {
