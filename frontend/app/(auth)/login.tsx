@@ -53,10 +53,11 @@ export default function LoginScreen() {
       {/* Hero Section */}
       <LinearGradient
         colors={['#6366f1', '#4f46e5', '#4338ca']}
-        className="h-70 relative"
+        style={{ height: 280 }}
+        className="relative"
       >
-        <View className="absolute top-12 left-0 w-25 h-25 bg-white/10 rounded-full -translate-x-7" />
-        <View className="absolute -top-12 right-0 w-25 h-25 bg-white/8 rounded-full translate-x-12" />
+        <View style={{ position: 'absolute', top: -50, right: -50, width: 100, height: 100, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 50 }} />
+        <View style={{ position: 'absolute', bottom: -30, left: -30, width: 60, height: 60, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 30 }} />
         
         <View className="flex-1 justify-center items-center px-6">
           <Image 
@@ -71,9 +72,9 @@ export default function LoginScreen() {
       </LinearGradient>
 
       {/* Form Section */}
-      <ScrollView className="flex-1 -mt-6" contentContainerStyle={{ paddingBottom: 40 }}>
-        <View className="bg-white rounded-t-3xl px-6 pt-8 min-h-full">
-          <View className="space-y-6">
+      <ScrollView className="flex-1" style={{ marginTop: -24 }} contentContainerStyle={{ paddingBottom: 40 }}>
+        <View className="bg-gray-50 rounded-t-3xl px-6 pt-8">
+          <View>
             <TextField
               control={control}
               name="email"
@@ -98,7 +99,7 @@ export default function LoginScreen() {
               }
             />
 
-            <View className="flex-row justify-between items-center">
+            <View className="flex-row justify-between items-center mb-6">
               <TouchableOpacity 
                 className="flex-row items-center" 
                 onPress={() => setRememberMe(!rememberMe)}
@@ -106,8 +107,8 @@ export default function LoginScreen() {
                 accessibilityState={{ checked: rememberMe }}
                 accessibilityLabel="Remember me"
               >
-                <View className={`w-5 h-5 border-2 rounded mr-3 ${rememberMe ? 'bg-indigo-600 border-indigo-600' : 'border-gray-400'}`}>
-                  {rememberMe && <Ionicons name="checkmark" size={12} color="white" />}
+                <View style={{ width: 20, height: 20, borderWidth: 2, borderRadius: 4, marginRight: 12, borderColor: rememberMe ? '#4f46e5' : '#9ca3af', backgroundColor: rememberMe ? '#4f46e5' : 'transparent', justifyContent: 'center', alignItems: 'center' }}>
+                  {rememberMe && <Ionicons name="checkmark" size={14} color="white" />}
                 </View>
                 <Text className="text-gray-700 text-sm">Remember me</Text>
               </TouchableOpacity>
@@ -119,19 +120,19 @@ export default function LoginScreen() {
             <Button 
               label={login.isPending ? 'Signing in...' : 'Sign in'} 
               onPress={onSubmit}
-              className="bg-indigo-600 py-4 rounded-2xl"
+              className="bg-indigo-600 py-4 rounded-2xl mb-6"
             />
 
-            <View className="flex-row items-center my-6">
-              <View className="flex-1 h-px bg-gray-300" />
+            <View className="flex-row items-center mb-6">
+              <View style={{ flex: 1, height: 1, backgroundColor: '#e5e7eb' }} />
               <Text className="px-4 text-gray-500 text-sm">Or continue with</Text>
-              <View className="flex-1 h-px bg-gray-300" />
+              <View style={{ flex: 1, height: 1, backgroundColor: '#e5e7eb' }} />
             </View>
 
-            <View className="space-y-3">
+            <View>
               <TouchableOpacity 
                 onPress={() => socialAuth('google')}
-                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl bg-white"
+                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl bg-white mb-3"
               >
                 <Ionicons name="logo-google" size={20} color="#4285f4" />
                 <Text className="ml-3 text-gray-900 font-medium">Continue with Google</Text>
@@ -139,7 +140,8 @@ export default function LoginScreen() {
 
               <TouchableOpacity 
                 onPress={() => socialAuth('facebook')}
-                className="flex-row items-center justify-center py-3 px-4 rounded-2xl bg-blue-600"
+                className="flex-row items-center justify-center py-3 px-4 rounded-2xl mb-3"
+                style={{ backgroundColor: '#1877f2' }}
               >
                 <Ionicons name="logo-facebook" size={20} color="white" />
                 <Text className="ml-3 text-white font-medium">Continue with Facebook</Text>
@@ -147,7 +149,7 @@ export default function LoginScreen() {
 
               <TouchableOpacity 
                 onPress={() => socialAuth('apple')}
-                className="flex-row items-center justify-center py-3 px-4 rounded-2xl bg-black"
+                className="flex-row items-center justify-center py-3 px-4 rounded-2xl bg-black mb-3"
               >
                 <Ionicons name="logo-apple" size={20} color="white" />
                 <Text className="ml-3 text-white font-medium">Continue with Apple</Text>
@@ -155,7 +157,8 @@ export default function LoginScreen() {
 
               <TouchableOpacity 
                 onPress={() => socialAuth('phone')}
-                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl bg-gray-50"
+                className="flex-row items-center justify-center py-3 px-4 border border-gray-300 rounded-2xl mb-3"
+                style={{ backgroundColor: '#f9fafb' }}
               >
                 <Ionicons name="call-outline" size={20} color="#374151" />
                 <Text className="ml-3 text-gray-900 font-medium">Continue with Phone Number</Text>
